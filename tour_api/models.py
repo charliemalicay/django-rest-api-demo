@@ -39,8 +39,16 @@ class Booking(models.Model):
     city = models.CharField(max_length=200)
     package = models.ForeignKey(Package, null=True, on_delete=models.SET_NULL)
 
+    owner = models.ForeignKey('auth.User', related_name='bookings', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['id']
+
     def __str__(self):
         return f"{self.name}, {self.email_address}"
+
+    def save(self, *args, **kwargs):
+        super(Booking, self).save(*args, **kwargs)
 
 
 class PackagePermission(models.Model):

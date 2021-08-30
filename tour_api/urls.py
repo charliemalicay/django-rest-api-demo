@@ -6,6 +6,7 @@ from tour_api import views
 
 router = DefaultRouter()
 router.register(r'tours', views.PackageViewSet)
+router.register(r'bookings', views.BookingViewSet)
 
 urlpatterns = [
     path('', include(router.urls))
