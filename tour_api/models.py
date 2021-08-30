@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -17,7 +18,7 @@ class Package(models.Model):
     thumbnail_url = models.CharField(max_length=200)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['price']
 
     def __str__(self):
         return self.name
@@ -36,6 +37,9 @@ class WishlistItem(models.Model):
 
     def save(self, *args, **kwargs):
         super(WishlistItem, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        super(WishlistItem, self).delete(*args, **kwargs)
 
 
 class Booking(models.Model):
