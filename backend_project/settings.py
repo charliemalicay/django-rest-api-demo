@@ -148,9 +148,9 @@ DATABASES['default'].update(prod_db)
 
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
+    'http://localhost:3000', 'https://tour-app-1.herokuapp.com'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
+    'http://localhost:3000', 'https://tour-app-1.herokuapp.com'
 ]
