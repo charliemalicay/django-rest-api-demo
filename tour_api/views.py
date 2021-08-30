@@ -4,8 +4,8 @@ from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from tour_api.models import Package, Booking
-from tour_api.serializers import PackageSerializer, BookingSerializer
+from tour_api.models import Package, Booking, WishlistItem
+from tour_api.serializers import PackageSerializer, BookingSerializer, WishlistItemSerializer
 
 
 @api_view(['GET'])
@@ -29,3 +29,12 @@ class BookingViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class WishlistItemViewSet(viewsets.ModelViewSet):
+    queryset = WishlistItem.objects.all()
+    serializer_class = WishlistItemSerializer
+    permission_classes = [BasePermission]
+
+    def perform_create(self, serializer):
+        serializer.save()

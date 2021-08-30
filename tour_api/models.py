@@ -28,8 +28,14 @@ class WishlistItem(models.Model):
     package = models.ForeignKey(Package, null=True, on_delete=models.SET_NULL)
     added_to_cart = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['package']
+
     def __str__(self):
         return f"{self.session_id} - {self.package.name} (added to cart? {self.added_to_cart})"
+
+    def save(self, *args, **kwargs):
+        super(WishlistItem, self).save(*args, **kwargs)
 
 
 class Booking(models.Model):
